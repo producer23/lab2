@@ -30,9 +30,26 @@ class Session extends Thread {
                 DataOutputStream output = new DataOutputStream(socket.getOutputStream())
         ) {
             output.writeUTF("Who are you?");
+            String nameClient = input.readUTF();
+            System.out.println("К нам пришел " + nameClient);
+            output.writeUTF("Hello, " + nameClient);
+
             String msgFromClient = input.readUTF();
-            System.out.println("К нам пришел " + msgFromClient);
-            output.writeUTF("Hello, " + msgFromClient);
+            int count = 1;
+            while (!msgFromClient.equals("bye")) {
+                if (nameClient.equals("admin") && msgFromClient.equals("exit")) {
+                    System.out.println("Админ убил меня...");
+                    System.exit(0);
+                }
+
+                System.out.println("Получено сообщение №" + count + " - " + msgFromClient);
+                output.writeUTF("Ответ сервера: " + count + " - " + msgFromClient);
+
+                msgFromClient = input.readUTF();
+                count++;
+            }
+
+            System.out.println("Пока, " + nameClient);
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();

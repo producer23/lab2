@@ -16,11 +16,20 @@ public class Client {
             String msgFromServer = input.readUTF();
             System.out.println(msgFromServer);
 
-            String msgFromClient = scanner.nextLine();
-            output.writeUTF(msgFromClient);
+            String nameClient = scanner.nextLine();
+            output.writeUTF(nameClient);
 
             msgFromServer = input.readUTF();
             System.out.println(msgFromServer);
+
+            String msgFromClient = scanner.nextLine();
+            while (!msgFromClient.equals("bye") && !(nameClient.equals("admin") && msgFromClient.equals("exit"))) {
+                output.writeUTF(msgFromClient);
+                msgFromServer = input.readUTF();
+                System.out.println(msgFromServer);
+                msgFromClient = scanner.nextLine();
+            }
+            output.writeUTF(msgFromClient);
         } catch (IOException e) {
             e.printStackTrace();
         }
