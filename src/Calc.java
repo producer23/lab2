@@ -1,10 +1,9 @@
 import java.util.Scanner;
 
-public class App {
+public class Calc {
 
-    public static void func(double x, double y) {
-        double res = (3.0 * Math.pow(Math.cos(x - Math.PI / 6.0), 2)) / (0.5 + Math.sin(y * y));
-        System.out.println("Результат = " + res);
+    public static double func(double x, double y) {
+        return (3.0 * Math.pow(Math.cos(x - Math.PI / 6.0), 2)) / (0.5 + Math.sin(y * y));
     }
 
     public static void main(String[] args) {
