@@ -42,7 +42,7 @@ class Session extends Thread {
                     System.exit(0);
                 }
 
-                System.out.println("Получено сообщение №" + count + " - " + msgFromClient);
+                System.out.println("Получено сообщение от " +  nameClient + " №" + count + " - " + msgFromClient);
                 output.writeUTF("Ответ сервера: " + count + " - " + msgFromClient);
 
                 msgFromClient = input.readUTF();
